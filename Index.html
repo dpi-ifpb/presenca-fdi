@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<base target="_top">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f4f3ee; --ink:#1d1d1b; --muted:#6b6a64; --line:#d9d7cf;
+    --green:#005f33; --green-2:#0b7a45; --lime:#8dc63f; --red:#e01e26; --white:#fff;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Open Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:16px;line-height:1.45}
+  .wrap{max-width:600px;margin:0 auto;padding:28px 22px 40px}
+  header img{height:38px;width:auto;display:block}
+  .eyebrow{margin:34px 0 6px;color:var(--green);font-weight:700;font-size:12px;letter-spacing:.22em;text-transform:uppercase}
+  h1{font-family:Archivo,"Open Sans",sans-serif;font-weight:800;font-size:30px;line-height:1.1;letter-spacing:-.01em;margin:0}
+  .sub{color:var(--muted);font-size:14px;margin-top:6px}
+  hr{border:0;border-top:1px solid var(--line);margin:24px 0}
+
+  .field{margin:0 0 20px;position:relative}
+  label.lbl{display:block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);margin-bottom:6px}
+  .hint{font-size:13px;color:var(--muted);margin-top:6px}
+  .hint.ok{color:var(--green)}
+  input[type=text],input[type=email],select,textarea{
+    width:100%;font:inherit;color:var(--ink);background:var(--white);
+    border:1px solid var(--line);border-radius:6px;padding:12px 13px;outline:none;
+    -webkit-appearance:none;appearance:none}
+  select{background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);
+    background-position:calc(100% - 18px) 52%,calc(100% - 13px) 52%;background-size:5px 5px;background-repeat:no-repeat;padding-right:34px}
+  input:focus,select:focus,textarea:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(0,95,51,.12)}
+  select:disabled{background-color:#eceae3;color:var(--ink);opacity:1}
+  textarea{min-height:84px;resize:vertical}
+  .invalid{border-color:var(--red)!important}
+
+  .ac{position:absolute;left:0;right:0;top:100%;z-index:10;margin-top:4px;background:var(--white);
+    border:1px solid var(--line);border-radius:6px;box-shadow:0 8px 24px rgba(0,0,0,.08);max-height:290px;overflow:auto;display:none}
+  .ac.on{display:block}
+  .ac div{padding:10px 13px;cursor:pointer;display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+  .ac div+div{border-top:1px solid #efeee9}
+  .ac div.act,.ac div:hover{background:#eef4ef}
+  .ac b{font-weight:700}
+  .tag{font-size:11px;font-weight:700;color:var(--green);white-space:nowrap}
+  .link{background:none;border:0;padding:0;color:var(--green);font:inherit;font-size:13px;text-decoration:underline;cursor:pointer}
+
+  .days{border:1px solid var(--line);border-radius:6px;background:var(--white)}
+  .day{display:flex;gap:12px;align-items:flex-start;padding:12px 13px}
+  .day+.day{border-top:1px solid #efeee9}
+  .day input{width:20px;height:20px;margin:1px 0 0;accent-color:var(--green);flex:none}
+  .day .t{font-weight:600}
+  .day .d{font-size:13px;color:var(--muted)}
+  .day.off{opacity:.45}
+  .day .pill{font-size:11px;font-weight:700;color:var(--white);background:var(--green);border-radius:3px;padding:1px 6px;margin-left:6px;letter-spacing:.04em}
+  .retro{display:flex;gap:10px;align-items:flex-start;margin-top:12px;font-size:14px}
+  .retro input{width:18px;height:18px;margin:2px 0 0;accent-color:var(--green);flex:none}
+  .note{font-size:13px;background:#fbf6e6;border-left:3px solid #d8b23a;padding:8px 11px;margin-top:10px;border-radius:0 4px 4px 0}
+
+  button.send{width:100%;font:inherit;font-weight:700;font-size:16px;color:var(--white);background:var(--green);
+    border:0;border-radius:6px;padding:14px;cursor:pointer;margin-top:6px}
+  button.send:hover{background:var(--green-2)}
+  button.send:disabled{background:#9bb5a6;cursor:default}
+  .err{color:var(--red);font-size:14px;margin-top:10px;min-height:1px}
+
+  .done{display:none}
+  .done .check{width:54px;height:54px;border-radius:50%;background:var(--green);display:grid;place-items:center;margin:30px 0 14px}
+  .done h2{font-family:Archivo,sans-serif;font-weight:800;font-size:24px;margin:0 0 8px}
+  .done ul{padding-left:18px;margin:8px 0 18px}
+  footer{margin-top:34px;padding-top:12px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--muted)}
+  footer b{color:var(--green);font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header><img alt="Fórum de Desenvolvimento Institucional | CONIF" src="data:image/png;base64,<?!= include('Logo').trim() ?>"></header>
+
+  <div class="eyebrow">Lista de presença</div>
+  <h1 id="tEvento"></h1>
+  <div class="sub" id="tSub"></div>
+  <hr>
+
+  <form id="f" novalidate autocomplete="off">
+    <div class="field">
+      <label class="lbl" for="nome">Nome completo</label>
+      <input type="text" id="nome" placeholder="Comece a digitar seu nome" autocomplete="off" spellcheck="false"
+             role="combobox" aria-autocomplete="list" aria-controls="ac" aria-expanded="false">
+      <div class="ac" id="ac" role="listbox"></div>
+      <div class="hint" id="hNome">Se seu nome aparecer na lista, selecione-o.</div>
+    </div>
+
+    <div class="field">
+      <label class="lbl" for="inst">Instituição</label>
+      <select id="inst"><option value="">Selecione…</option></select>
+      <div class="hint" id="hInst"></div>
+    </div>
+
+    <div class="field">
+      <label class="lbl" for="email">E-mail institucional</label>
+      <input type="email" id="email" placeholder="nome@instituicao.edu.br" inputmode="email" autocomplete="email">
+    </div>
+
+    <div class="field">
+      <label class="lbl">Data de participação</label>
+      <div class="days" id="days"></div>
+      <label class="retro"><input type="checkbox" id="retro">
+        <span>Registro de presença retroativa <span class="d" style="color:var(--muted)">— habilita os dias anteriores</span></span></label>
+      <div class="note" id="nota" style="display:none"></div>
+    </div>
+
+    <div class="field">
+      <label class="lbl" for="obs">Observação <span style="text-transform:none;letter-spacing:0;font-weight:400;color:var(--muted)">(opcional)</span></label>
+      <textarea id="obs" maxlength="1000" placeholder="Algo a registrar?"></textarea>
+    </div>
+
+    <button class="send" id="btn" type="submit">Registrar presença</button>
+    <div class="err" id="err" role="alert"></div>
+  </form>
+
+  <section class="done" id="done">
+    <div class="check"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+    <h2>Presença registrada</h2>
+    <div id="resumo"></div>
+    <button class="link" id="nova" type="button">Registrar outra pessoa</button>
+  </section>
+
+  <footer><span id="fForum"></span><span>Reditec 2026 · <b>Montes Claros/MG</b></span></footer>
+</div>
+
+<script>
+const D = <?!= dados ?>;
+const $ = id => document.getElementById(id);
+const norm = s => String(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/\s+/g,' ').trim();
+const fmt = iso => { const [a,m,d] = iso.split('-'); return d+'/'+m+'/'+a; };
+const instNome = sig => (D.instituicoes.find(i => i.sigla === sig) || {}).nome || sig;
+
+$('tEvento').textContent = D.evento;
+$('tSub').textContent = D.subtitulo;
+$('fForum').textContent = D.forum;
+D.instituicoes.forEach(i => {
+  const o = document.createElement('option'); o.value = i.sigla;
+  o.textContent = i.sigla === 'Outra' ? i.nome : i.sigla + ' — ' + i.nome; $('inst').appendChild(o);
+});
+const membros = D.membros.map(m => ({...m, n: norm(m.nome)}));
+
+/* ── Autocompletar ── */
+let escolhido = null, sug = [], ativo = -1;
+const nome = $('nome'), ac = $('ac');
+
+function marcar(txt, q){
+  const toks = norm(q).split(' ').filter(Boolean); if(!toks.length) return esc(txt);
+  const base = norm(txt); const on = new Array(txt.length).fill(false);
+  toks.forEach(t => { let i = base.indexOf(t); while(i >= 0){ for(let k=i;k<i+t.length;k++) on[k]=true; i = base.indexOf(t,i+1); } });
+  let out='', b=false;
+  for(let i=0;i<txt.length;i++){ if(on[i]!==b){ out += on[i]?'<b>':'</b>'; b=on[i]; } out += esc(txt[i]); }
+  return out + (b?'</b>':'');
+}
+function esc(s){ return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+function buscar(){
+  const q = norm(nome.value);
+  if(q.length < 2){ fechar(); return; }
+  const toks = q.split(' ');
+  sug = membros.filter(m => toks.every(t => m.n.includes(t)))
+    .sort((a,b) => (b.n.startsWith(q) - a.n.startsWith(q)) || a.n.localeCompare(b.n)).slice(0,8);
+  ativo = sug.length ? 0 : -1;
+  ac.innerHTML = sug.map((m,i) => `<div role="option" data-i="${i}" class="${i===ativo?'act':''}"><span>${marcar(m.nome, nome.value)}</span><span class="tag">${esc(m.sigla)}</span></div>`).join('');
+  ac.classList.toggle('on', sug.length > 0);
+  nome.setAttribute('aria-expanded', sug.length > 0);
+}
+function fechar(){ ac.classList.remove('on'); nome.setAttribute('aria-expanded','false'); }
+function destacar(){ [...ac.children].forEach((el,i) => el.classList.toggle('act', i===ativo)); const el = ac.children[ativo]; if(el) el.scrollIntoView({block:'nearest'}); }
+
+function escolher(m){
+  escolhido = m; nome.value = m.nome; fechar();
+  $('inst').value = m.sigla; $('inst').disabled = true;
+  $('hNome').className = 'hint ok'; $('hNome').textContent = 'Membro identificado na base do FDI.';
+  $('hInst').innerHTML = 'Preenchida a partir do cadastro. <button type="button" class="link" id="alt">Alterar</button>';
+  $('alt').onclick = () => { $('inst').disabled = false; $('inst').focus(); $('hInst').textContent = ''; };
+  nome.classList.remove('invalid'); $('inst').classList.remove('invalid');
+  if (window.google && google.script) {
+    google.script.run.withSuccessHandler(e => { if(e && !$('email').value) $('email').value = e; }).emailDoMembro(m.nome);
+  }
+  $('email').focus();
+}
+function soltar(){
+  if(!escolhido) return;
+  escolhido = null; $('inst').disabled = false; $('inst').value = '';
+  $('hInst').textContent = '';
+}
+function avisoNaoEncontrado(){
+  const q = norm(nome.value);
+  if(escolhido) return;
+  if(q.length < 3 || ac.classList.contains('on')){ $('hNome').className='hint'; $('hNome').textContent='Se seu nome aparecer na lista, selecione-o.'; return; }
+  const exato = membros.find(m => m.n === q);
+  if(exato){ escolher(exato); return; }
+  $('hNome').className = 'hint';
+  $('hNome').textContent = 'Nome não encontrado na base — confira a grafia e selecione sua instituição abaixo.';
+}
+
+nome.addEventListener('input', () => { soltar(); buscar(); avisoNaoEncontrado(); });
+nome.addEventListener('keydown', e => {
+  if(!ac.classList.contains('on')) return;
+  if(e.key === 'ArrowDown'){ e.preventDefault(); ativo = Math.min(ativo+1, sug.length-1); destacar(); }
+  else if(e.key === 'ArrowUp'){ e.preventDefault(); ativo = Math.max(ativo-1, 0); destacar(); }
+  else if(e.key === 'Enter' && ativo >= 0){ e.preventDefault(); escolher(sug[ativo]); }
+  else if(e.key === 'Escape'){ fechar(); }
+});
+ac.addEventListener('mousedown', e => { const el = e.target.closest('[data-i]'); if(el){ e.preventDefault(); escolher(sug[+el.dataset.i]); } });
+nome.addEventListener('blur', () => setTimeout(() => { fechar(); avisoNaoEncontrado(); }, 150));
+
+/* ── Datas ── */
+const hoje = D.hoje, dias = D.dias;
+const primeiro = dias[0].data, ultimo = dias[dias.length-1].data;
+const temHoje = dias.some(d => d.data === hoje);
+$('days').innerHTML = dias.map(d => `
+  <label class="day" data-d="${d.data}">
+    <input type="checkbox" value="${d.data}">
+    <span><span class="t">${esc(d.rotulo)}</span>${d.data===hoje?'<span class="pill">HOJE</span>':''}<br>
+    <span class="d">${esc(d.descricao)}${d.data>hoje?' · ainda não disponível':''}</span></span>
+  </label>`).join('');
+
+function aplicarDatas(){
+  const retro = $('retro').checked;
+  document.querySelectorAll('.day').forEach(row => {
+    const d = row.dataset.d, cb = row.querySelector('input');
+    let pode;
+    if(d === hoje){ pode = retro; if(!retro) cb.checked = true; }   // hoje: marcado e travado; com retroativo, editável
+    else if(d < hoje){ pode = retro; if(!retro) cb.checked = false; }
+    else { pode = false; cb.checked = false; }
+    cb.disabled = !pode;
+    row.classList.toggle('off', !pode && !(d === hoje));
+  });
+  const nota = $('nota');
+  if(hoje < primeiro){
+    nota.style.display = ''; nota.textContent = 'O registro de presença abre em ' + fmt(primeiro) + '.';
+    $('retro').disabled = true; $('btn').disabled = true;
+  } else if(!temHoje && !retro){
+    nota.style.display = ''; nota.textContent = 'Hoje não é um dia do evento. Para registrar presença em um dia anterior, marque “Registro de presença retroativa”.';
+  } else if(retro){
+    nota.style.display = ''; nota.textContent = 'Marque os dias em que esteve presente e, se possível, informe na observação o motivo do registro retroativo.';
+  } else nota.style.display = 'none';
+  $('obs').placeholder = retro ? 'Ex.: registro retroativo — não registrei no dia por…' : 'Algo a registrar?';
+}
+$('retro').addEventListener('change', aplicarDatas);
+aplicarDatas();
+
+/* ── Envio ── */
+$('f').addEventListener('submit', e => {
+  e.preventDefault();
+  const err = $('err'); err.textContent = '';
+  const p = {
+    nome: nome.value.replace(/\s+/g,' ').trim(),
+    sigla: $('inst').value,
+    email: $('email').value.trim(),
+    retroativo: $('retro').checked,
+    datas: [...document.querySelectorAll('.day input:checked')].map(c => c.value),
+    observacao: $('obs').value.trim()
+  };
+  const probs = [];
+  const mark = (el, bad) => el.classList.toggle('invalid', bad);
+  mark(nome, p.nome.split(' ').length < 2); if(p.nome.split(' ').length < 2) probs.push('informe o nome completo');
+  mark($('inst'), !p.sigla); if(!p.sigla) probs.push('selecione a instituição');
+  const emOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(p.email); mark($('email'), !emOk); if(!emOk) probs.push('informe um e-mail válido');
+  if(!p.datas.length) probs.push('marque ao menos uma data');
+  if(probs.length){ err.textContent = 'Para concluir: ' + probs.join('; ') + '.'; return; }
+
+  const btn = $('btn'); btn.disabled = true; btn.textContent = 'Registrando…';
+  google.script.run
+    .withSuccessHandler(r => {
+      btn.disabled = false; btn.textContent = 'Registrar presença';
+      const li = [];
+      r.gravados.forEach(d => li.push('<li>' + fmt(d) + ' — registrada</li>'));
+      r.repetidos.forEach(d => li.push('<li>' + fmt(d) + ' — já constava na lista</li>'));
+      $('resumo').innerHTML = '<p><b>' + esc(p.nome) + '</b><br>' + esc(instNome(p.sigla)) + '</p><ul>' + li.join('') + '</ul>';
+      $('f').style.display = 'none'; $('done').style.display = 'block'; window.scrollTo(0,0);
+    })
+    .withFailureHandler(ex => {
+      btn.disabled = false; btn.textContent = 'Registrar presença';
+      err.textContent = String(ex && ex.message || ex).replace(/^Error:\s*/,'') || 'Não foi possível registrar. Tente novamente.';
+    })
+    .registrar(p);
+});
+
+$('nova').addEventListener('click', () => {
+  $('f').reset(); soltar(); escolhido = null;
+  $('hNome').className='hint'; $('hNome').textContent='Se seu nome aparecer na lista, selecione-o.';
+  document.querySelectorAll('.invalid').forEach(el => el.classList.remove('invalid'));
+  aplicarDatas(); $('done').style.display='none'; $('f').style.display=''; nome.focus();
+});
+</script>
+</body>
+</html>
