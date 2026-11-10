@@ -96,6 +96,17 @@
     </div>
 
     <div class="field">
+      <label class="lbl" for="cargo">Cargo</label>
+      <input type="text" id="cargo" list="cargos" maxlength="150" placeholder="Ex.: Pró-Reitor(a) de Desenvolvimento Institucional" autocomplete="organization-title">
+      <datalist id="cargos">
+        <option value="Reitor(a)"><option value="Pró-Reitor(a) de Desenvolvimento Institucional">
+        <option value="Pró-Reitor(a) de Planejamento e Desenvolvimento Institucional">
+        <option value="Diretor(a) de Desenvolvimento Institucional"><option value="Diretor(a) de Planejamento">
+        <option value="Diretor(a) Sistêmico(a)"><option value="Coordenador(a)"><option value="Servidor(a)">
+      </datalist>
+    </div>
+
+    <div class="field">
       <label class="lbl" for="email">E-mail institucional</label>
       <input type="email" id="email" placeholder="nome@instituicao.edu.br" inputmode="email" autocomplete="email">
     </div>
@@ -129,7 +140,7 @@
 
 <script>
 /* DESTINO: cole aqui a configuração gerada por criarFormularioGoogle() */
-const DESTINO = {"action":"https://docs.google.com/forms/d/e/1FAIpQLSf3nj5eRAJtUSmF8rmwoduHLqXjoJUVBnkxjbBqq7sX_ZS8fQ/formResponse","entries":{"nome":"entry.78534898","sigla":"entry.1785302107","instituicao":"entry.23219070","email":"entry.41115454","datas":"entry.65594976","retroativo":"entry.194894205","observacao":"entry.1281649111"}};
+const DESTINO = {"action":"https://docs.google.com/forms/d/e/1FAIpQLSf3nj5eRAJtUSmF8rmwoduHLqXjoJUVBnkxjbBqq7sX_ZS8fQ/formResponse","entries":{"nome":"entry.78534898","sigla":"entry.1785302107","instituicao":"entry.23219070","email":"entry.41115454","datas":"entry.65594976","retroativo":"entry.194894205","observacao":"entry.1281649111","cargo":"entry.2067326600"}};
 const D = {"evento": "Reunião Ordinária do FDI", "subtitulo": "Reditec 2026 · IFNMG Campus Montes Claros/MG", "forum": "Fórum de Desenvolvimento Institucional · CONIF", "dias": [{"data": "2026-11-10", "rotulo": "Terça, 10/11", "descricao": "Reunião Ordinária do FDI"}, {"data": "2026-11-11", "rotulo": "Quarta, 11/11", "descricao": "Programação Reditec 2026"}, {"data": "2026-11-12", "rotulo": "Quinta, 12/11", "descricao": "Programação Reditec 2026"}], "instituicoes": [{"sigla": "CEFET-MG", "nome": "Centro Federal de Educação Tecnológica de Minas Gerais"}, {"sigla": "CEFET/RJ", "nome": "Centro Federal de Educação Tecnológica Celso Suckow da Fonseca"}, {"sigla": "CPII", "nome": "Colégio Pedro II"}, {"sigla": "IFAC", "nome": "Instituto Federal do Acre"}, {"sigla": "IFAL", "nome": "Instituto Federal de Alagoas"}, {"sigla": "IFAM", "nome": "Instituto Federal do Amazonas"}, {"sigla": "IFAP", "nome": "Instituto Federal do Amapá"}, {"sigla": "IFB", "nome": "Instituto Federal de Brasília"}, {"sigla": "IFBA", "nome": "Instituto Federal da Bahia"}, {"sigla": "IF Baiano", "nome": "Instituto Federal Baiano"}, {"sigla": "IFC", "nome": "Instituto Federal Catarinense"}, {"sigla": "IFCE", "nome": "Instituto Federal do Ceará"}, {"sigla": "IFES", "nome": "Instituto Federal do Espírito Santo"}, {"sigla": "IFF", "nome": "Instituto Federal Fluminense"}, {"sigla": "IFFar", "nome": "Instituto Federal Farroupilha"}, {"sigla": "IFG", "nome": "Instituto Federal de Goiás"}, {"sigla": "IF Goiano", "nome": "Instituto Federal Goiano"}, {"sigla": "IFMA", "nome": "Instituto Federal do Maranhão"}, {"sigla": "IFMG", "nome": "Instituto Federal de Minas Gerais"}, {"sigla": "IFMS", "nome": "Instituto Federal de Mato Grosso do Sul"}, {"sigla": "IFMT", "nome": "Instituto Federal de Mato Grosso"}, {"sigla": "IFNMG", "nome": "Instituto Federal do Norte de Minas Gerais"}, {"sigla": "IFPA", "nome": "Instituto Federal do Pará"}, {"sigla": "IFPB", "nome": "Instituto Federal da Paraíba"}, {"sigla": "IFPE", "nome": "Instituto Federal de Pernambuco"}, {"sigla": "IFPI", "nome": "Instituto Federal do Piauí"}, {"sigla": "IFPR", "nome": "Instituto Federal do Paraná"}, {"sigla": "IFRJ", "nome": "Instituto Federal do Rio de Janeiro"}, {"sigla": "IFRN", "nome": "Instituto Federal do Rio Grande do Norte"}, {"sigla": "IFRO", "nome": "Instituto Federal de Rondônia"}, {"sigla": "IFRR", "nome": "Instituto Federal de Roraima"}, {"sigla": "IFRS", "nome": "Instituto Federal do Rio Grande do Sul"}, {"sigla": "IFS", "nome": "Instituto Federal de Sergipe"}, {"sigla": "IFSC", "nome": "Instituto Federal de Santa Catarina"}, {"sigla": "IF Sertão PE", "nome": "Instituto Federal do Sertão Pernambucano"}, {"sigla": "IFSP", "nome": "Instituto Federal de São Paulo"}, {"sigla": "IF Sudeste MG", "nome": "Instituto Federal do Sudeste de Minas Gerais"}, {"sigla": "IFSul", "nome": "Instituto Federal Sul-rio-grandense"}, {"sigla": "IFSULDEMINAS", "nome": "Instituto Federal do Sul de Minas Gerais"}, {"sigla": "IFTM", "nome": "Instituto Federal do Triângulo Mineiro"}, {"sigla": "IFTO", "nome": "Instituto Federal do Tocantins"}, {"sigla": "UTFPR", "nome": "Universidade Tecnológica Federal do Paraná"}, {"sigla": "CONIF", "nome": "Conselho Nacional das Instituições da Rede Federal de EPCT"}, {"sigla": "SETEC/MEC", "nome": "Secretaria de Educação Profissional e Tecnológica"}, {"sigla": "Outra", "nome": "Outra instituição (informe na observação)"}], "membros": [{"nome": "Emanoel Amador Reis Neto", "sigla": "IFAC"}, {"nome": "Carolina Mendonça de Moraes Duarte", "sigla": "IFAL"}, {"nome": "Carlos Tiago Garantizado", "sigla": "IFAM"}, {"nome": "Tatiane Vaz de Sales Cardoso", "sigla": "IFAP"}, {"nome": "Elis Fábia Lopes Cabral", "sigla": "IFBA"}, {"nome": "Kátia Vilela", "sigla": "IF Baiano"}, {"nome": "Reuber Saraiva de Santiago", "sigla": "IFCE"}, {"nome": "Valdiná Regis Lopes Feitosa", "sigla": "IFB"}, {"nome": "Eglon Rhuan Salazar Guimarães", "sigla": "IFES"}, {"nome": "Priscylla Dietz Ferreira Amaral", "sigla": "IFG"}, {"nome": "Vanessa Montrezol Honório", "sigla": "IF Goiano"}, {"nome": "Clarisse Cordeiro Medeiros Mondego", "sigla": "IFMA"}, {"nome": "Henrique Elias Borges", "sigla": "CEFET-MG"}, {"nome": "Wilson José Vieira da Costa", "sigla": "IFMG"}, {"nome": "Amanda Ferreira Silva e Almeida", "sigla": "IFNMG"}, {"nome": "Eduardo Sales Machado Borges", "sigla": "IF Sudeste MG"}, {"nome": "Luís Adriano Batista", "sigla": "IFSULDEMINAS"}, {"nome": "Eduardo Jardel Veiga Gonçalves", "sigla": "IFTM"}, {"nome": "Fernando Silveira Alves", "sigla": "IFMS"}, {"nome": "Diogo Barbosa Leite", "sigla": "IFMT"}, {"nome": "Claudionor Andrade Farias Júnior", "sigla": "IFPA"}, {"nome": "Anderson Bráulio Nóbrega da Silva", "sigla": "IFPB"}, {"nome": "Jouberte Santos", "sigla": "IFPE"}, {"nome": "Klemmerson Amariz Gomes", "sigla": "IF Sertão PE"}, {"nome": "Paulo Henrique Gomes de Lima", "sigla": "IFPI"}, {"nome": "José Barbosa Dias Júnior", "sigla": "IFPR"}, {"nome": "Diego Moreira de Araújo Carvalho", "sigla": "CEFET/RJ"}, {"nome": "Ricardo José Bentim Soares", "sigla": "CPII"}, {"nome": "Edislene Galharte Maciel Lopes", "sigla": "IFRJ"}, {"nome": "Vinícius Chrysóstomo Silva", "sigla": "IFF"}, {"nome": "Raphael Siqueira Fontes", "sigla": "IFRN"}, {"nome": "Renato Delmonico", "sigla": "IFRO"}, {"nome": "Adriene Silva do Nascimento", "sigla": "IFRR"}, {"nome": "Lucas Corardini", "sigla": "IFRS"}, {"nome": "Carlos Rodrigo Lehn", "sigla": "IFFar"}, {"nome": "Mauro André Barbosa Cunha", "sigla": "IFSul"}, {"nome": "Bárbarah Cristine Leidow Sorgetz", "sigla": "IFC"}, {"nome": "Diego Albino Martins", "sigla": "IFSC"}, {"nome": "Chirlaine Cristine Gonçalves", "sigla": "IFS"}, {"nome": "Bruno Nogueira Luz", "sigla": "IFSP"}, {"nome": "Juliana Ferreira de Queiroz", "sigla": "IFTO"}]};
 D.hoje = new Intl.DateTimeFormat('en-CA',{timeZone:'America/Sao_Paulo',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
 const $ = id => document.getElementById(id);
@@ -252,6 +263,7 @@ $('f').addEventListener('submit', e => {
   const p = {
     nome: nome.value.replace(/\s+/g,' ').trim(),
     sigla: $('inst').value,
+    cargo: $('cargo').value.replace(/\s+/g,' ').trim(),
     email: $('email').value.trim(),
     retroativo: $('retro').checked,
     datas: [...document.querySelectorAll('.day input:checked')].map(c => c.value),
@@ -261,6 +273,7 @@ $('f').addEventListener('submit', e => {
   const mark = (el, bad) => el.classList.toggle('invalid', bad);
   mark(nome, p.nome.split(' ').length < 2); if(p.nome.split(' ').length < 2) probs.push('informe o nome completo');
   mark($('inst'), !p.sigla); if(!p.sigla) probs.push('selecione a instituição');
+  mark($('cargo'), !p.cargo); if(!p.cargo) probs.push('informe o cargo');
   const emOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(p.email); mark($('email'), !emOk); if(!emOk) probs.push('informe um e-mail válido');
   if(!p.datas.length) probs.push('marque ao menos uma data');
   if(probs.length){ err.textContent = 'Para concluir: ' + probs.join('; ') + '.'; return; }
@@ -273,10 +286,11 @@ $('f').addEventListener('submit', e => {
   body.append(E.nome, p.nome); body.append(E.sigla, p.sigla); body.append(E.instituicao, instNome(p.sigla));
   body.append(E.email, p.email.toLowerCase()); body.append(E.datas, p.datas.slice().sort().join(', '));
   body.append(E.retroativo, p.retroativo ? 'Sim' : 'Não'); body.append(E.observacao, p.observacao);
+  if(E.cargo) body.append(E.cargo, p.cargo);
   fetch(DESTINO.action, { method:'POST', mode:'no-cors', body })
     .then(() => {
       fim();
-      $('resumo').innerHTML = '<p><b>' + esc(p.nome) + '</b><br>' + esc(instNome(p.sigla)) + '</p><ul>' +
+      $('resumo').innerHTML = '<p><b>' + esc(p.nome) + '</b><br>' + esc(p.cargo) + '<br>' + esc(instNome(p.sigla)) + '</p><ul>' +
         p.datas.slice().sort().map(d => '<li>' + fmt(d) + '</li>').join('') + '</ul>';
       $('f').style.display = 'none'; $('done').style.display = 'block'; window.scrollTo(0,0);
     })
